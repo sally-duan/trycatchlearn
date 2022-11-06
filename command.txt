@@ -1,0 +1,10 @@
+dotnet new sln
+dotnet new webapi -o api
+dotnet sln add api
+dotnet watch run
+
+dotnet ef migrations add initialCreate -o data/Migrations
+
+dotnet ef database update
+
+
