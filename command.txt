@@ -16,5 +16,6 @@ ng g -h ==>list all angular related items
 
 ng g c nav --skip-tests
 ng g c home --skip-tests
+ng g guard auth --skip-tests
 
-
+https://bootswatch.com/ --themes
