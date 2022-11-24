@@ -14,7 +14,6 @@ dotnet watch --no-hot-reload
 
 
 
-
 ng new client --strict false
 
 go to client folder and do "ng serve" and see localhost:4200
