@@ -62,7 +62,7 @@ namespace API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public async void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -77,6 +77,20 @@ namespace API
             app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
             app.UseAuthentication();
             app.UseAuthorization();
+           
+            // using var scope = app.ApplicationServices.CreateScope();
+            // var services = scope.ServiceProvider;
+
+            // try {
+            //     var context = services.GetRequiredService<DataContext>();
+            //     await context.Database.MigrateAsync();
+            //     await Seed.SeedUsers(context);
+            // }
+            // catch (Exception ex)
+            // {
+
+            // }
+
 
             app.UseEndpoints(endpoints =>
             {
