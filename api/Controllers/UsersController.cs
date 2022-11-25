@@ -9,14 +9,8 @@ namespace api.Controllers
 {
      public class UsersController:BaseApiController
     {
-        // private readonly DataContext _context;
-        // public UsersController(DataContext context)
-        // {
-        //     _context= context;
-        // }
-
-
-       private readonly IUserRepository _userRepository;
+        
+        private readonly IUserRepository _userRepository;
         public UsersController(IUserRepository  userRepository)
         {
             _userRepository= userRepository;
@@ -26,7 +20,7 @@ namespace api.Controllers
         [HttpGet]
         public async Task< ActionResult<IEnumerable<AppUser>>> GetUserAsync()
         {
-            return Ok(await _userRepository.GetUserAsync());          
+           return  Ok(await _userRepository.GetUserAsync());        
        
         }
 

@@ -16,7 +16,7 @@ const routes: Routes = [
   canActivate:[AuthGuard],
   children:
 [
-{path:'members', component:MemberListComponent, canActivate:[AuthGuard]},
+{path:'members', component:MemberListComponent},
 {path:'members/:id', component:MemberDetailComponent},
 {path:'lists', component:ListsComponent},
 {path:'messages', component:MessagesComponent},
@@ -25,7 +25,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+imports: [RouterModule.forRoot(routes)],
  
 exports:[RouterModule]
 })
