@@ -25,10 +25,10 @@ namespace api.Entities
         public string Country{ get; set; }
         public List<Photo> Photos { get; set; } = new ();
 
-        public int GetAge() {
-            //return (int)DateTime.Now.Subtract(DateOfBirth ).TotalDays;
-          return DateOfBirth.CalculateAge();
-        }
+        // public int GetAge() {
+        //     //return (int)DateTime.Now.Subtract(DateOfBirth ).TotalDays;
+        //   return DateOfBirth.CalculateAge();
+        // }
 
     }
 
