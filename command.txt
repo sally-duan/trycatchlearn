@@ -30,3 +30,6 @@ https://bootswatch.com/ --themes
 
 https://json-generator.com/
 
+ngx gallery for photos:
+https://www.npmjs.com/package/@kolkov/ngx-gallery
+
