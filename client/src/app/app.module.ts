@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +14,12 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { SharedModule } from './_modules/shared/shared.module';
+import { MemberCardComponent } from './members/member-card/member-card.component';
+import { JwtInterceptor } from './_interceptor/jwt.interceptor';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -24,9 +30,11 @@ import { SharedModule } from './_modules/shared/shared.module';
     MemberListComponent,
     MemberDetailComponent,
     ListsComponent,
-    MessagesComponent
+    MessagesComponent,
+    MemberCardComponent
   ],
   imports: [
+
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -36,7 +44,9 @@ import { SharedModule } from './_modules/shared/shared.module';
     
   
   ],
-  providers: [],
+  providers: [
+    { provide:HTTP_INTERCEPTORS, useClass:JwtInterceptor, multi:true}   
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
