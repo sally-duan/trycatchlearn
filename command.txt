@@ -33,3 +33,5 @@ https://json-generator.com/
 ngx gallery for photos:
 https://www.npmjs.com/package/@kolkov/ngx-gallery
 
+ngx-spinner -npm for spinner =>https://github.com/Napster2210/ngx-spinner
+

@@ -16,6 +16,8 @@ import { MessagesComponent } from './messages/messages.component';
 import { SharedModule } from './_modules/shared/shared.module';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { JwtInterceptor } from './_interceptor/jwt.interceptor';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { LoadingInterceptor } from './_interceptor/loading.interceptor';
 
 
 
@@ -31,7 +33,8 @@ import { JwtInterceptor } from './_interceptor/jwt.interceptor';
     MemberDetailComponent,
     ListsComponent,
     MessagesComponent,
-    MemberCardComponent
+    MemberCardComponent,
+    MemberEditComponent
   ],
   imports: [
 
@@ -45,7 +48,8 @@ import { JwtInterceptor } from './_interceptor/jwt.interceptor';
   
   ],
   providers: [
-    { provide:HTTP_INTERCEPTORS, useClass:JwtInterceptor, multi:true}   
+    { provide:HTTP_INTERCEPTORS, useClass:JwtInterceptor, multi:true},
+    { provide:HTTP_INTERCEPTORS, useClass:LoadingInterceptor, multi:true},
   ],
   bootstrap: [AppComponent]
 })
