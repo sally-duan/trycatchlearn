@@ -53,7 +53,7 @@ namespace api.Controllers
             //for the login user find its hash by the same key
             //compare the user's passwordhash and login's password hash to see if they are the same
       
-            var user = await _context.Users.SingleOrDefaultAsync(u=>u.UserName ==login.Username);
+            var user = await _context.Users.Include(user=>user.Photos).SingleOrDefaultAsync(u=>u.UserName ==login.Username);
             if (user ==null)
             return Unauthorized("This login does not exist");
 
@@ -67,7 +67,9 @@ namespace api.Controllers
             }
             return new UserDto {
                 Username =user.UserName,
-                Token = _tokenService.CreateToken(user)
+                Token = _tokenService.CreateToken(user),
+                PhotoUrl= user.Photos.FirstOrDefault(x=>x.IsMain)?.Url
+               
             };
 
         }

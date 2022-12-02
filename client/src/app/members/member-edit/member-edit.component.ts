@@ -1,8 +1,8 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { take } from 'rxjs/operators';
-import { Member } from 'src/app/_models/member';
-import { User } from 'src/app/_models/user';
-import { MembersService } from 'src/app/_services/members.service';
+import { Member } from '../../_models/member';
+import { User } from '../../_models/user';
+import { MembersService } from '../../_services/members.service';
 import { AccountService } from './../../_services/account.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
@@ -21,11 +21,6 @@ export class MemberEditComponent implements OnInit {
        $event.returnValue = true;     
     }   
   }
-
-  
-
-
-
 // @HostListener('window:unload', ['$event'])
 // unloadHandler($event:any) {
 //     this.PostCall();

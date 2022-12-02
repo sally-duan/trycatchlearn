@@ -30,6 +30,8 @@ https://bootswatch.com/ --themes
 
 https://json-generator.com/
 
+https://github.com/valor-software/ng2-file-upload
+
 ngx gallery for photos:
 https://www.npmjs.com/package/@kolkov/ngx-gallery
 
