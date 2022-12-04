@@ -1,25 +1,41 @@
-<form #registerForm="ngForm" (ngSubmit)="register()" autocomplete>
+<form [formGroup]="registerForm" (ngSubmit)="register()" autocomplete ="off">
     <h2 class="text-center text-primary">Sign up</h2>
-<div class="form-group" >
-<label>User name</label> 
-<input class="form-control" type="text"  name="username" [(ngModel)]="model.username" placeholder="user name">
-</div >
+    <hr>
+ 
+    <div class="mb-3">
+        <label style="margin-right:10px">I am a: </label>
+        <label class="form-check-label">
+            <input type="radio" class="form-check-input" value="male" formControlName="gender"> Male
+        </label>
+        <label class="form-check-label">
+            <input type="radio" class="form-check-input ms-3" value="female" formControlName="gender"> Female
+        </label>
+    </div>
+   
 
-<!-- <div class="form-group" >
-    <label>What is your favorite person?</label> 
-     <select>
-        <option  *ngFor= "let user of usersFromParentComponent" [value]="user.userName">{{user.userName}}</option>
-     </select>
-</div> -->
+    <app-text-input [formControl]="$any(registerForm.controls['username'])" 
+        [label]="'Username'"></app-text-input>
+
+    <app-text-input [formControl]="$any(registerForm.controls['knownAs'])" 
+        [label]="'Known As'"></app-text-input>
+    <app-text-input [formControl]="$any(registerForm.controls['dateOfBirth'])" 
+        [label]="'Date of Birth'" [label]="'Date Of Birth'"></app-text-input >
+    <app-text-input [formControl]="$any(registerForm.controls['city'])" 
+        [label]="'City'"></app-text-input>
+    <app-text-input [formControl]="$any(registerForm.controls['country'])" 
+        [label]="'Country'"></app-text-input>
+    <app-text-input [formControl]="$any(registerForm.controls['password'])" 
+        [label]="'Password'" [type]="'password'">
+    </app-text-input>
+    <app-text-input [formControl]="$any(registerForm.controls['confirmPassword'])" 
+        [label]="'Confirm Password'"
+        [type]="'password'"></app-text-input>
 
 
-
-
-<div class="form-group" >
-<label>User password</label> 
- <input class="form-control" type="password" name="password" [(ngModel)]="model.password" placeholder="user name">
-</div>
 <button class="btn btn-primary btn-success mr-2" type="submit" >Register</button>
 <button class="btn btn-primary default" (click)="cancel()">Cancel</button>
 
 </form>
+
+<p>form value : {{registerForm.value|json}}</p>
+<p>form value : {{registerForm.status|json}}</p>
