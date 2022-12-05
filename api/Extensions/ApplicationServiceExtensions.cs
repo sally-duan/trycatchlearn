@@ -1,4 +1,5 @@
 using api.Data;
+using api.DTOs;
 using api.Helpers;
 using api.Interfaces;
 using api.Services;
@@ -22,6 +23,12 @@ namespace api.Extensions
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());         
             services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
             services.AddScoped<IPhotoService, PhotoService>();
+
+            services.AddControllers().AddJsonOptions(options =>
+            {
+            options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
+           
+            });
 
             return services;
 
