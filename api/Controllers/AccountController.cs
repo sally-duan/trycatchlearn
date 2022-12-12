@@ -22,7 +22,7 @@ namespace api.Controllers
             _tokenService = tokenService;
             _mapper= mapper;
         }
-
+        // POST: api/account/register?username=dave&password=pwd
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {

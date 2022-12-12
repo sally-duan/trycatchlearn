@@ -1,10 +1,9 @@
-
-
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
-namespace api.Extensions{
+namespace api.Extensions
+{
     public static class IdentityServiceExtensions
     {
         public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration config )

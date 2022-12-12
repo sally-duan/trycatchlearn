@@ -3,6 +3,7 @@ using api.DTOs;
 using api.Helpers;
 using api.Interfaces;
 using api.Services;
+using API.Data;
 using API.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,7 +25,7 @@ namespace api.Extensions
             services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
             services.AddScoped<IPhotoService, PhotoService>();
             services.AddScoped<LogUserActivity>();
-
+            // services.AddScoped<ILikesRepository, LikesRepository>();
             services.AddControllers().AddJsonOptions(options =>
             {
             options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
