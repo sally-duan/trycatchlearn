@@ -57,24 +57,33 @@ matchValues(matchTo: string):ValidatorFn
 register(){  
    
     const dob = this.getDateOnly(this.registerForm.controls['dateOfBirth'].value);
-    const values = {...this.registerForm.value, dateOfBirth: dob};
+    const values = {...this.registerForm.value, dateOfBirth: dob}; 
+
+
     this.accountService.register(values).subscribe({
     next: ()=>{      
       this.router.navigateByUrl('/members');
     },
     error: error=>{
       this.validationErrors = error;
-      // this.toastr.error(error.error);
+      this.toastr.error(error.error);
     }
   })}
 
   cancel(){this.cancelRegistraton.emit(false);  }
 
+
   private getDateOnly(dob: string | undefined) {
     if (!dob) return;
     let theDob = new Date(dob);
-    return new Date(theDob.setMinutes(theDob.getMinutes()-theDob.getTimezoneOffset()))
-      .toISOString().slice(0,10);
+
+    var result = new Date(theDob.setMinutes(theDob.getMinutes()-theDob.getTimezoneOffset()))
+     .toISOString().slice(0,10);
+    // .replace(/-/g," ");    
+    
+    return result;  
   }
+
+  
 
 }

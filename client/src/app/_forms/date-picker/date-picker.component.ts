@@ -16,7 +16,7 @@ bsConfig:Partial<BsDatepickerConfig>|undefined;
   constructor(@Self() public ngControl:NgControl ) {
     
     this.ngControl.valueAccessor = this;
-    this.bsConfig ={      
+    this.bsConfig ={    
       dateInputFormat: 'DD MMMM YYYY'
     }
   }

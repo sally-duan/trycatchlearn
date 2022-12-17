@@ -8,8 +8,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit {
   registeredStatus = false;
-  users:any;
-  constructor(private http:HttpClient) { 
+  users: any;
+  constructor(private http: HttpClient) {
 
   }
 
@@ -17,25 +17,22 @@ export class HomeComponent implements OnInit {
     this.getUsers();
   }
 
- getUsers()
- {
-  this.http.get("https://localhost:5001/api/users").subscribe(
-    response=>{
-      this.users = response;
-    },
-    Error=>{console.log(Error)}
-  )
- }
+  getUsers() {
+    this.http.get("https://localhost:5001/api/users").subscribe(
+      response => {
+        this.users = response;
+      },
+      Error => { console.log(Error) }
+    )
+  }
 
- setRegistrationStatus(event:boolean)
- {
-  this.registeredStatus =event;
- }
+  setRegistrationStatus(event: boolean) {
+    this.registeredStatus = event;
+  }
 
 
 
-  ToggerRegistration()
-  {
+  ToggerRegistration() {
     this.registeredStatus = !this.registeredStatus;
   }
 

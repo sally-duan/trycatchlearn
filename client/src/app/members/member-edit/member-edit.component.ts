@@ -47,17 +47,20 @@ ngOnInit(): void {
 }
 loadMember(){
 if(!this.user) return;
-this.memberService.getMember(this.user?.username).subscribe({
+this.memberService.getMember(this.user.username).subscribe({
   next:member=>this.member = member
 })}
 
 updateMember(){
+  console.log(this.member);
+  console.log('hello');
   this.memberService.updateMember(this.editForm?.value).subscribe({
-next:_=>{
+  next:_=>{
   this.toastr.success("profile updated successfully.");
   this.editForm?.reset(this.member);
 }
-  })
+   }
+  )
   
 }
 

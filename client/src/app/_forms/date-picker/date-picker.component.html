@@ -5,9 +5,9 @@
    [formControl]="control"
    placeholder ="{{label}}"
    bsDatepicker
-   
+  
    [maxDate]="maxDate"
-   [bsConfig]="{containerClass:'theme-red'}"
+   [bsConfig]=bsConfig
    >
 
 <div *ngIf="control.errors?.['required']" class="invalid-feedback">{{label}} is required</div>

@@ -24,8 +24,8 @@ namespace api.data.Migrations
                 migrationBuilder.AddColumn<DateOnly>(
                 name: "DateOfBirth",
                 table: "Users",
-                type: "nvarchar(max)",
-                nullable: true);
+                type: "datetime2",
+                nullable: false);
 
             migrationBuilder.AddColumn<DateTime>(
                 name: "Created",

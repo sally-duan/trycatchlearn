@@ -1,4 +1,3 @@
-using api.Data;
 using api.DTOs;
 using api.Entities;
 using api.Helpers;
@@ -7,7 +6,7 @@ using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
-namespace API.Data
+namespace api.Data
 {
     public class UserRepository : IUserRepository
     {
@@ -27,11 +26,11 @@ namespace API.Data
                 .SingleOrDefaultAsync();
         }
 
-        public async Task<api.Helpers.PagedList<MemberDto>> GetMembersAsync(api.Helpers.UserParams userParams)
+        public async Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParams)
         {
             var query = _context.Users.AsQueryable();
 
-            query = query.Where(u => u.UserName != userParams.CurrentUserName);
+            query = query.Where(u => u.UserName != userParams.CurrentUsername);
             query = query.Where(u => u.Gender == userParams.Gender);
 
             var minDob = DateOnly.FromDateTime(DateTime.Today.AddYears(-userParams.MaxAge - 1));
@@ -46,8 +45,8 @@ namespace API.Data
             };
 
             return await PagedList<MemberDto>.CreateAsync(
-                query.AsNoTracking().ProjectTo<MemberDto>(_mapper.ConfigurationProvider),
-                userParams.PageNumber,
+                query.AsNoTracking().ProjectTo<MemberDto>(_mapper.ConfigurationProvider), 
+                userParams.PageNumber, 
                 userParams.PageSize);
 
         }
@@ -57,7 +56,7 @@ namespace API.Data
             return await _context.Users.FindAsync(id);
         }
 
-        public async Task<AppUser> GetUser(string username)
+        public async Task<AppUser> GetUserByUsernameAsync(string username)
         {
             return await _context.Users
                 .Include(p => p.Photos)

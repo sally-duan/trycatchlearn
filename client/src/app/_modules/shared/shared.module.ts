@@ -14,24 +14,21 @@ import { TimeagoModule } from 'ngx-timeago';
 
 @NgModule({
   declarations: [],
-  imports: [
+  imports:[
     CommonModule,
-    ToastrModule.forRoot({
-      positionClass:'toast-bottom-right'
-    }),
+    ToastrModule.forRoot({ positionClass:'toast-bottom-right' }),
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     NgxGalleryModule,
+    NgxSpinnerModule,   
     FileUploadModule, 
     BsDatepickerModule.forRoot(),
     PaginationModule.forRoot(),
     ButtonsModule.forRoot(),
-    TimeagoModule.forRoot()
-    // NgxSpinnerModule.forRoot({
-    //   type: 'line-scale-party'
-    // }),
+    TimeagoModule.forRoot(),
+   
   ],
-  exports:  [
+  exports:[
     ToastrModule,
     BsDropdownModule,
     TabsModule,

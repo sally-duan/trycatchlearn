@@ -69,7 +69,7 @@ export class MembersService {
   //     return members;
   //   })
   // )
-  //}
+  // }
 
   getMembers(userParams: UserParams) {
 
@@ -88,25 +88,10 @@ export class MembersService {
     )
   }
 
-
-
-  // getUserParams() {
-  //   return this.userParams;
-  // }
-
-  // setUserParams(params: UserParams) {
-  //   this.userParams = params;
-  // }
-
-
   getMember(username: string) {
     const member = [...this.memberCache.values()].reduce((arr, elem) => arr.concat(elem.result), [])
       .find((member: Member) => member.userName === username);
     if (member) return of(member);
-
-    //console.log(this.memberCache);
-    // const member = this.members.find(x=>x.userName ===username)
-    // if (member){return of(member);}    
     return this.http.get<Member>(this.baseUrl + 'users/' + username);
   }
 

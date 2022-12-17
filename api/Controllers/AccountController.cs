@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using api.DTOs;
 using api.Interfaces;
 using AutoMapper;
+using System.Globalization;
 
 namespace api.Controllers
 {
@@ -32,8 +33,8 @@ namespace api.Controllers
             }
             var user = _mapper.Map<AppUser>(registerDto);
             using var hmac = new HMACSHA512();
-
-           
+            
+         
             user.UserName = registerDto.Username.ToLower();
             user.PasswordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(registerDto.Password));
             user.PasswordSalt = hmac.Key;
@@ -45,6 +46,7 @@ namespace api.Controllers
                 Token = _tokenService.CreateToken(user),
                 KnownAs = user.KnownAs,
                 Gender = user.Gender
+               
             };
         }
 

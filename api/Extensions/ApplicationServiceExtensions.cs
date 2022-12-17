@@ -1,19 +1,20 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using api.Data;
 using api.DTOs;
 using api.Helpers;
 using api.Interfaces;
 using api.Services;
-using API.Data;
 using API.Interfaces;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace api.Extensions
 {
     public static class ApplicationServiceExtensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration config)
-        {
-         
+        {         
             services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
@@ -28,12 +29,20 @@ namespace api.Extensions
             // services.AddScoped<ILikesRepository, LikesRepository>();
             services.AddControllers().AddJsonOptions(options =>
             {
-            options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
-           
+             options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());         
+            
             });
 
-            return services;
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
 
+            JsonSerializerOptions options = new()
+            {
+                ReferenceHandler = ReferenceHandler.IgnoreCycles,
+                WriteIndented = true
+            };
+            return services;
         }
     }
 }
