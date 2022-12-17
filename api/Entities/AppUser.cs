@@ -26,8 +26,6 @@ namespace api.Entities
         public string City { get; set; }
         public string Country { get; set; }
         public List<Photo> Photos { get; set; } = new List<Photo>();
-
-
         [JsonConverter(typeof(DateOnlyJsonConverter))]
         public DateOnly DateOfBirth { get; set; }
         // public int GetAge()
