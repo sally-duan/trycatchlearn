@@ -37,20 +37,8 @@ namespace api.Controllers
             var users = await _userRepository.GetMembersAsync(userParams);
             Response.AddPaginationHeader(new PaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages));
             return Ok(users);
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
+        
         //api/users/3
         [Authorize]
         [HttpGet("{id:int}")]
