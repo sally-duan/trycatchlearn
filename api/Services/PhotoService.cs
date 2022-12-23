@@ -2,12 +2,12 @@ using Microsoft.AspNetCore.Http;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.Extensions.Options;
-
+using api.Interfaces;
 
 
 namespace api.Services
 {
-    public class PhotoService: API.Interfaces.IPhotoService
+    public class PhotoService: IPhotoService
     {
         private readonly Cloudinary _cloudinary;
 

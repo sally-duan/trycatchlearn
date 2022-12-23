@@ -14,7 +14,7 @@ namespace api.data.Migrations
     [DbContext(typeof(DataContext))]
     [Migration("20221210214805_extendedEntity3")]
     partial class extendedEntity3
-    {
+    {   
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
