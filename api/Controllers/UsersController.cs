@@ -7,7 +7,6 @@ using api.Interfaces;
 using AutoMapper;
 using api.DTOs;
 using System.Security.Claims;
-using API.Interfaces;
 using api.Extensions;
 using api.Helpers;
 
