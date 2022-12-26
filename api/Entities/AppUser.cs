@@ -28,14 +28,12 @@ namespace api.Entities
         public List<Photo> Photos { get; set; } = new List<Photo>();
         [JsonConverter(typeof(DateOnlyJsonConverter))]
         public DateOnly DateOfBirth { get; set; }
-        // public int GetAge()
-        // {
-        //     return DateOfBirth.CalculateAge();
-        // }
-      
+
         public List<UserLike> LikedByUsers { get; set; }
         public List<UserLike> LikedUsers { get; set; }
 
+        public List<Message> MessageSent { get; set; }
+        public List<Message> MessageReceived { get; set; }
     }
 
 

@@ -9,6 +9,7 @@ import { environment } from './../../environments/environment';
 import { UserParams } from '../_models/UserParams';
 import { User } from '../_models/user';
 import { AccountService } from './account.service';
+import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
 
 
 
@@ -56,42 +57,24 @@ addLike(username:string)
   return this.http.post(this.baseUrl+'likes/'+ username, {});
 }
 
-getLikes(predicate:string, pageNumber:number,pageSize:number)
+getLikes(predicate:string, pageNumber:number,pageSize:number,  http:HttpClient)
 {
-  let params = this.getPaginationHeaders(pageNumber, pageSize);
+  let params = getPaginationHeaders(pageNumber, pageSize);
   params = params.append('predicate', predicate)
   //return this.http.get<Member[]>(this.baseUrl+'likes?predicate='+ predicate);
-  return this.getPaginatedResult<Member[]>(this.baseUrl+'likes', params);
+  return getPaginatedResult<Member[]>(this.baseUrl+'likes', params, this.http);
 }
-  // getMembers(){
-  //   return this.http.get<Member[]>(this.baseUrl +'users',this.getHttpOptions());
-  // }
-
-  // getMember(username:string){
-  //   return this.http.get<Member>(this.baseUrl + 'users' + username, this.getHttpOptions());
-  // }
-
-
-  // getMembers(){
-  // if (this.members.length>0) return of(this.members);
-  // return this.http.get<Member[]>(this.baseUrl +'users').pipe (
-  //   map(members=>{
-  //     this.members = members;
-  //     return members;
-  //   })
-  // )
-  // }
 
   getMembers(userParams: UserParams) {
 
     const response = this.memberCache.get(Object.values(userParams).join('-'));
     if (response) return of(response);
-    let params = this.getPaginationHeaders(userParams.pageNumber, userParams.pageSize);
+    let params = getPaginationHeaders(userParams.pageNumber, userParams.pageSize);
     params = params.append('minAge', userParams.minAge);
     params = params.append('maxAge', userParams.maxAge);
     params = params.append('gender', userParams.gender);
     params = params.append('orderBy', userParams.orderBy);
-    return this.getPaginatedResult<Member[]>(this.baseUrl + 'users', params).pipe(
+    return getPaginatedResult<Member[]>(this.baseUrl + 'users', params, this.http).pipe(
       map(response => {
         this.memberCache.set(Object.values(userParams).join('-'), response);
         return response;
@@ -125,32 +108,32 @@ getLikes(predicate:string, pageNumber:number,pageSize:number)
   }
 
 
-  private getPaginatedResult<T>(url: string, params: HttpParams) {
+  // private getPaginatedResult<T>(url: string, params: HttpParams) {
 
-    const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>();
-    return this.http.get<T>(url, { observe: 'response', params }).pipe(
-      map(response => {
-        if (response.body) {
-          paginatedResult.result = response.body;
-        }
+  //   const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>();
+  //   return this.http.get<T>(url, { observe: 'response', params }).pipe(
+  //     map(response => {
+  //       if (response.body) {
+  //         paginatedResult.result = response.body;
+  //       }
 
-        const pagination = response.headers.get('Pagination');
-        if (pagination) {
-          paginatedResult.pagination = JSON.parse(pagination);
-        }
+  //       const pagination = response.headers.get('Pagination');
+  //       if (pagination) {
+  //         paginatedResult.pagination = JSON.parse(pagination);
+  //       }
 
-        return paginatedResult;
-      })
-    );
-  }
+  //       return paginatedResult;
+  //     })
+  //   );
+  // }
 
-  private getPaginationHeaders(pageNumber: number, pageSize: number) {
-    let params = new HttpParams();
-    params = params.append('pageNumber', pageNumber);
-    params = params.append('pageSize', pageSize);
+  // private getPaginationHeaders(pageNumber: number, pageSize: number) {
+  //   let params = new HttpParams();
+  //   params = params.append('pageNumber', pageNumber);
+  //   params = params.append('pageSize', pageSize);
 
-    return params;
-  }
+  //   return params;
+  // }
 
   // getHttpOptions(){
   //   const userString = localStorage.getItem('user');
