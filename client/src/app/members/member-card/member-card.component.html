@@ -12,7 +12,10 @@
         <ul class="list-inline member-icons animate text-center">
             <li class="list-inline-item"><button routerLink ="/members/{{member.userName}}"  class="btn btn-primary"><i class="fa fa-user icon-cog" style="color:red"></i></button></li>
             <li class="list-inline-item"><button class="btn btn-primary" (click)="addLike(member)"><i class="fa fa-heart" style="color:red"></i></button></li>
-            <li class="list-inline-item"><button class="btn btn-primary"><i class="fa fa-envelope" style="color:red"></i></button></li>
+            <li class="list-inline-item"><button
+                routerLink="/members/{{member.userName}}"
+                [queryParams]="{tab:'Messages'}"
+                class="btn btn-primary"><i class="fa fa-envelope" style="color:red"></i></button></li>
         </ul>
     </div>
 

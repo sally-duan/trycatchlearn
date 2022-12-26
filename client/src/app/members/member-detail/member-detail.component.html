@@ -1,10 +1,6 @@
 
-HELLO HELLO
-<h3>Member detail</h3>
-  
-<h1 *ngIf="member">{{member?.knownAs}}</h1>
 
-<div class="row" *ngIf="member">
+<div class="row" > 
 <div class="col-4">
 <div class="card"> 
     <img src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.knownAs}}"
@@ -12,7 +8,7 @@ HELLO HELLO
     
     <div class="card-body"> 
         <div> <strong>Location:</strong><p>{{member.city}}, {{member.country}}</p>  </div>       
-        <div> <strong>Age:</strong> <p>{{member.Age}</p> </div>       
+        <div> <strong>Age:</strong> <p>{{member.age}}</p> </div>       
         <div> <strong>Last active</strong><p>{{member.lastActive +'Z' |timeago}}</p></div>       
         <div><strong>Member since:</strong>  <p>{{member.created|date}}</p></div>
     </div>         
@@ -20,7 +16,7 @@ HELLO HELLO
     <div class="card-footer">
        <div class="btn-group d-flex">
            <button class="btn btn-primary">Like</button>
-           <button class="btn btn-success">Messages</button>    
+           <button class="btn btn-success" (click)="selectTab('Messages')">Messages</button>    
        </div>
     </div>       
 </div>
@@ -28,30 +24,28 @@ HELLO HELLO
  
 
 <div class="col-8">
-    <tabset class="member-tabset">
-        <tab heading="About {{member.knownAs}}">
+    <tabset class="member-tabset" #memberTabs>
+        <tab heading="About {{member.knownAs}}" (selectTab)="onTabActivated($event)">
             <h4>Description</h4>
             <p>{{member.introduction}}</p>
             <h4>Looing for</h4>
             <p>{{member.lookingFor}}</p>
         </tab>
 
-        <tab heading="Interests">
+        <tab heading="Interests" (selectTab)="onTabActivated($event)">
            <h4>Interests</h4>
            <p>{{member.interests}}</p>
         </tab>
 
-        <tab heading="Photos">            
+        <tab heading="Photos" (selectTab)="onTabActivated($event)">            
            <ngx-gallery [options] ="galleryOptions" [images]="galleryImages" class="ngx-gallery">
            </ngx-gallery>
          </tab>
 
-         <tab heading="Messages">            
-            <p>Messages will go here</p>
+         <tab heading="Messages" (selectTab)="onTabActivated($event)">            
+            <app-member-messages [messages]="messages" [username]="member.userName"></app-member-messages>
          </tab>
 
     </tabset>
 </div>
-
-
 </div>
