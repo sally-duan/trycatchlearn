@@ -9,8 +9,11 @@ import { AuthGuard } from './_guard/auth.guard';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { PreventUnsavedChangesGuard } from './_guard/preventunsavedchanges.guard';
 import { MemberDetailedResolver } from './_resolvers/member-detailed.resolver';
+<<<<<<< HEAD
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { AdminGuard } from './_guards/admin.guard';
+=======
+>>>>>>> ead028757c5a25c5ef9bbfbfdb8724eddc91f1dd
 
 const routes: Routes = [
 {path:'', component:HomeComponent},

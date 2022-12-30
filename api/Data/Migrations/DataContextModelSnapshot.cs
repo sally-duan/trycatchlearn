@@ -297,6 +297,50 @@ namespace api.data.Migrations
                     b.ToTable("Messages");
                 });
 
+            modelBuilder.Entity("api.Entities.Message", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DateRead")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("MessageSent")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("RecipientDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("RecipientId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RecipientUsername")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("SenderDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("SenderId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SenderUsername")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RecipientId");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("Messages");
+                });
+
             modelBuilder.Entity("api.Entities.Photo", b =>
                 {
                     b.Property<int>("Id")
@@ -339,6 +383,7 @@ namespace api.data.Migrations
                     b.ToTable("Likes");
                 });
 
+<<<<<<< HEAD
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("api.Entities.AppRole", null)
@@ -394,6 +439,8 @@ namespace api.data.Migrations
                     b.Navigation("User");
                 });
 
+=======
+>>>>>>> ead028757c5a25c5ef9bbfbfdb8724eddc91f1dd
             modelBuilder.Entity("api.Entities.Message", b =>
                 {
                     b.HasOne("api.Entities.AppUser", "Recipient")
