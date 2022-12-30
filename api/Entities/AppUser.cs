@@ -4,18 +4,14 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using api.Entities;
 using api.Extensions;
-using api.Helpers;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Microsoft.AspNetCore.Identity;
 
 namespace api.Entities
 {
-    public class AppUser
+    public class AppUser:IdentityUser<int>
     {
-        public int Id { get; set; }
-        public string UserName { get; set; }
-        public byte[] PasswordHash { get; set; }
-        public byte[] PasswordSalt { get; set; }
-
+      
         public string KnownAs { get; set; }
         public DateTime Created { get; set; } = DateTime.UtcNow;
         public DateTime LastActive { get; set; } = DateTime.UtcNow;
@@ -26,25 +22,23 @@ namespace api.Entities
         public string City { get; set; }
         public string Country { get; set; }
         public List<Photo> Photos { get; set; } = new List<Photo>();
-        [JsonConverter(typeof(DateOnlyJsonConverter))]
+        // [JsonConverter(typeof(DateOnlyJsonConverter))]
         public DateOnly DateOfBirth { get; set; }
-
         public List<UserLike> LikedByUsers { get; set; }
         public List<UserLike> LikedUsers { get; set; }
-
         public List<Message> MessageSent { get; set; }
         public List<Message> MessageReceived { get; set; }
+
+        public ICollection<AppUserRole>UserRoles {get; set;}
     }
 
 
 
     public class DateOnlyConverter : ValueConverter<DateOnly, DateTime>
-    {
-        public DateOnlyConverter() : base(
+    {   public DateOnlyConverter() : base(
                 dateOnly => dateOnly.ToDateTime(TimeOnly.MinValue),
                 dateTime => DateOnly.FromDateTime(dateTime))
-        {
-        }
+        {     }
     }
 
 
