@@ -13,13 +13,12 @@ namespace api.Data
         { }
       
         public DbSet<UserLike> Likes {get; set;}
-<<<<<<< HEAD
-        public DbSet<Message> Messages {get; set;}
-=======
-
         public DbSet<Message> Messages {get; set;}
 
->>>>>>> ead028757c5a25c5ef9bbfbfdb8724eddc91f1dd
+
+      
+
+
         protected override void OnModelCreating(ModelBuilder builder)
         {  
             base.OnModelCreating(builder);
@@ -55,15 +54,14 @@ namespace api.Data
                 .HasOne(u => u.Recipient)
                 .WithMany(m => m.MessageReceived)                
                 .OnDelete(DeleteBehavior.Restrict);
-<<<<<<< HEAD
-=======
+
 
             builder.Entity<Message>()
                 .HasOne(u => u.Sender)
                 .WithMany(m=>m.MessageSent)                
                 .OnDelete(DeleteBehavior.NoAction);
 
->>>>>>> ead028757c5a25c5ef9bbfbfdb8724eddc91f1dd
+
 
             builder.Entity<Message>()
                 .HasOne(u => u.Sender)

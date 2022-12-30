@@ -24,21 +24,15 @@ namespace api.Entities
         public List<Photo> Photos { get; set; } = new List<Photo>();
         // [JsonConverter(typeof(DateOnlyJsonConverter))]
         public DateOnly DateOfBirth { get; set; }
-<<<<<<< HEAD
-=======
-
->>>>>>> ead028757c5a25c5ef9bbfbfdb8724eddc91f1dd
         public List<UserLike> LikedByUsers { get; set; }
         public List<UserLike> LikedUsers { get; set; }
         public List<Message> MessageSent { get; set; }
         public List<Message> MessageReceived { get; set; }
 
-<<<<<<< HEAD
         public ICollection<AppUserRole>UserRoles {get; set;}
-=======
-        public List<Message> MessageSent { get; set; }
-        public List<Message> MessageReceived { get; set; }
->>>>>>> ead028757c5a25c5ef9bbfbfdb8724eddc91f1dd
+       
+     
+
     }
 
 

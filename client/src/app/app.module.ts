@@ -22,14 +22,12 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { DatePickerComponent } from './_forms/date-picker/date-picker.component';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
-<<<<<<< HEAD
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { HasRoleDirective } from './_directive/has-role.directive';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { PhotoManagementComponent } from './admin/photo-management/photo-management.component';
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
-=======
->>>>>>> ead028757c5a25c5ef9bbfbfdb8724eddc91f1dd
+
 
 
 
@@ -50,16 +48,15 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
     PhotoEditorComponent,
     TextInputComponent,
     DatePickerComponent,
-<<<<<<< HEAD
+
     MemberMessagesComponent,
     AdminPanelComponent,
     HasRoleDirective,
     UserManagementComponent,
     PhotoManagementComponent,
-    RolesModalComponent
-=======
+    RolesModalComponent,
     MemberMessagesComponent
->>>>>>> ead028757c5a25c5ef9bbfbfdb8724eddc91f1dd
+
   ],
   imports: [
 

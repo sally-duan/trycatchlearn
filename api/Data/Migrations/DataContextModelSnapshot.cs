@@ -383,7 +383,6 @@ namespace api.data.Migrations
                     b.ToTable("Likes");
                 });
 
-<<<<<<< HEAD
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("api.Entities.AppRole", null)
@@ -439,8 +438,6 @@ namespace api.data.Migrations
                     b.Navigation("User");
                 });
 
-=======
->>>>>>> ead028757c5a25c5ef9bbfbfdb8724eddc91f1dd
             modelBuilder.Entity("api.Entities.Message", b =>
                 {
                     b.HasOne("api.Entities.AppUser", "Recipient")
