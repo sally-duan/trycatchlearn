@@ -6,6 +6,7 @@ using api.Helpers;
 using api.Interfaces;
 using api.Services;
 using Microsoft.EntityFrameworkCore;
+using api.SignalR;
 
 
 namespace api.Extensions
@@ -28,6 +29,9 @@ namespace api.Extensions
             services.AddScoped<ILikesRepository, LikesRepository>();
           
             services.AddScoped<IMessageRepository, MessageRepository>();
+            services.AddSignalR();
+            services.AddSingleton<PresenceTracker>();
+
             services.AddControllers().AddJsonOptions(options =>
             {
              options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());         

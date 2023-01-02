@@ -24,8 +24,7 @@
         <button class="btn btn-success col-12" [disabled]="!editForm.dirty" form="editForm" type="submit">Save Changes</button>            
       </div>       
   </div>
-  </div>
-   
+  </div>   
   
   <div class="col-8">
       <tabset class="member-tabset">
@@ -62,13 +61,11 @@
                 <input type="text" [(ngModel)]="member.city" name="city" class="form-control mx-2"/>
                 <label for ="country">Country:</label>
                 <input type="text" [(ngModel)]="member.country" name="country" class="form-control mx-2"/>
-                </div>     
-
-            </form>             
+                </div>
+              </form>             
           </tab>
   
-          <tab heading="Edit photos">
-                        
+          <tab heading="Edit photos">                        
              <app-photo-editor [member] ="member"></app-photo-editor>
           </tab>     
   

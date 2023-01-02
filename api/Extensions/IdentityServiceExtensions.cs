@@ -1,9 +1,10 @@
 using System.Text;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+// using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using api.Entities;
 using Microsoft.AspNetCore.Identity;
 using api.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace api.Extensions
 {
@@ -20,8 +21,8 @@ namespace api.Extensions
             .AddRoleManager<RoleManager<AppRole>>()
             .AddEntityFrameworkStores<DataContext>();
 
-             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
+          services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
@@ -30,7 +31,20 @@ namespace api.Extensions
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };
+                options.Events = new Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents {
+                    OnMessageReceived = context =>{
+                        var accessToken = context.Request.Query["access_token"];
+                         var path = context.HttpContext.Request.Path;
+                        if (!string.IsNullOrEmpty(accessToken) && path.StartsWithSegments("/hubs"))
+                        {
+                            context.Token = accessToken;
+                        }
+
+                        return Task.CompletedTask;
+                    }
+                };
             });
+
             
             services.AddAuthorization(opt=>
             {

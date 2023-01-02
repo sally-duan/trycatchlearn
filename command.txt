@@ -1,5 +1,6 @@
 https://github.com/trycatchlearn/datingapp
 https://jwt.ms/
+npm install @microsoft/signalr --legacy-peer-deps
 
 
 
