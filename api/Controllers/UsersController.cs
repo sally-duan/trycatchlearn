@@ -12,6 +12,7 @@ using api.Helpers;
 
 namespace api.Controllers
 {
+     [Authorize]
     public class UsersController : BaseApiController
     {
         private readonly IMapper _mapper;

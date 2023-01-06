@@ -6,8 +6,9 @@ namespace api.SignalR
         = new Dictionary<string, List<string>>();
 
 
-        public Task UserConnected(string username, string connectionId)
+        public Task<bool> UserConnected(string username, string connectionId)
         {
+            bool isOnline = false;
             lock (OnlineUsers)
             {
                 if (OnlineUsers.ContainsKey(username))
@@ -17,27 +18,33 @@ namespace api.SignalR
                 else
                 {
                     OnlineUsers.Add(username, new List<string> { connectionId });
+                    isOnline = true;
                 }
             }
 
-            return Task.CompletedTask;
+            return Task.FromResult(isOnline);
         }
 
 
-        public Task UserDisonnected(string username, string connectionId)
+        public Task<bool> UserDisonnected(string username, string connectionId)
         {
+            bool isOffline =false;
             lock (OnlineUsers)
             {
-                if (!OnlineUsers.ContainsKey(username)) return Task.CompletedTask;
+                if (!OnlineUsers.ContainsKey(username))
+                {
+                    return Task.FromResult(isOffline);
+                } 
                 OnlineUsers[username].Remove(connectionId);
 
                 if (OnlineUsers[username].Count == 0)
                 {
                     OnlineUsers.Remove(username);
+                    isOffline =true;
                 }
             }
 
-            return Task.CompletedTask;
+          return Task.FromResult(isOffline);
         }
 
 
@@ -50,5 +57,19 @@ namespace api.SignalR
             }
             return Task.FromResult(userList);
         }
+    
+    public static  Task<List<string>> GetConnectionsForUser(string username)
+    {
+       List<string> connectionIds ;
+       lock (OnlineUsers)
+       {
+          connectionIds = OnlineUsers.GetValueOrDefault(username);
+           
+       }
+       return Task.FromResult(connectionIds);
+    }
+    
+    
+    
     }
 }
